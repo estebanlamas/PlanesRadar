@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 
+ext {
+    retrofit2Version = '2.3.0'
+    okHttpVersion = '3.9.0'
+    gsonVersion = '2.8.0'
+    supportVersion = '26.1.0'
+    playServicesVersion = '11.6.0'
+    daggerVersion = '2.9'
+    lifecycleVersion = '1.0.0'
+}
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -19,10 +29,37 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Support
+    compile "com.android.support:appcompat-v7:${supportVersion}"
+
+    // Play services
+    compile "com.google.android.gms:play-services-maps:${playServicesVersion}"
+
+    // Network Connections
+    compile "com.squareup.retrofit2:retrofit:${retrofit2Version}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofit2Version}"
+    compile "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    compile "com.squareup.okhttp3:okhttp-urlconnection:${okHttpVersion}"
+
+    // Mapper
+    compile "com.google.code.gson:gson:${gsonVersion}"
+
+    // Injection
+    compile "com.google.dagger:dagger:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // Architecture dependencies
+    compile "android.arch.lifecycle:extensions:${lifecycleVersion}"
+    compile "android.arch.lifecycle:runtime:${lifecycleVersion}"
+    annotationProcessor "android.arch.lifecycle:compiler:${lifecycleVersion}"
+
+    // Testing
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
+    testCompile 'junit:junit:4.12'
 }
