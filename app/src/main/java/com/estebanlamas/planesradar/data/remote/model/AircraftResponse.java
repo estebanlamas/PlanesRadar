@@ -6,544 +6,260 @@ import com.google.gson.annotations.SerializedName;
 public class AircraftResponse {
 
     @SerializedName("Alt")
-    private java.lang.Long mAlt;
-    @SerializedName("AltT")
-    private java.lang.Long mAltT;
-    @SerializedName("Bad")
-    private Boolean mBad;
-    @SerializedName("Brng")
-    private Double mBrng;
-    @SerializedName("CMsgs")
-    private java.lang.Long mCMsgs;
+    private int altitudGround;
+
     @SerializedName("CNum")
-    private String mCNum;
+    private String serial;
+
     @SerializedName("Call")
-    private String mCall;
-    @SerializedName("CallSus")
-    private Boolean mCallSus;
+    private String callsign;
+
     @SerializedName("Cou")
-    private String mCou;
-    @SerializedName("Dst")
-    private Double mDst;
+    private String aircraftCountry;
+
+    /**
+     0 = Unknown
+     1 = Aft Mounted
+     2 = Wing Buried
+     3 = Fuselage Buried
+     4 = Nose Mounted
+     5 = Wing Mounted
+     */
     @SerializedName("EngMount")
-    private java.lang.Long mEngMount;
+    private short engineMount;
+
+    /**
+     0 = None
+     1 = Piston
+     2 = Turboprop
+     3 = Jet
+     4 = Electric
+     */
     @SerializedName("EngType")
-    private java.lang.Long mEngType;
+    private short engineType;
+
     @SerializedName("Engines")
-    private String mEngines;
-    @SerializedName("FSeen")
-    private String mFSeen;
-    @SerializedName("FlightsCount")
-    private java.lang.Long mFlightsCount;
+    private short enginesNum;
+
     @SerializedName("From")
-    private String mFrom;
+    private String from;
+
     @SerializedName("GAlt")
-    private java.lang.Long mGAlt;
+    private int altitudeSeaLevel;
+
     @SerializedName("Gnd")
-    private Boolean mGnd;
-    @SerializedName("HasPic")
-    private Boolean mHasPic;
-    @SerializedName("HasSig")
-    private Boolean mHasSig;
+    private boolean onGround;
+
     @SerializedName("Help")
-    private Boolean mHelp;
+    private boolean help;
+
     @SerializedName("Icao")
-    private String mIcao;
-    @SerializedName("Id")
-    private java.lang.Long mId;
-    @SerializedName("InHg")
-    private Double mInHg;
+    private String idBroadcastIcao;
+
     @SerializedName("Interested")
-    private Boolean mInterested;
+    private boolean interesting;
+
     @SerializedName("Lat")
-    private Double mLat;
+    private Double latitude;
+
     @SerializedName("Long")
-    private Double mLong;
+    private Double longitude;
+
     @SerializedName("Man")
-    private String mMan;
+    private String manufacturer;
+
     @SerializedName("Mdl")
-    private String mMdl;
+    private String modelDescription;
+
     @SerializedName("Mil")
-    private Boolean mMil;
-    @SerializedName("Mlat")
-    private Boolean mMlat;
+    private boolean military;
+
     @SerializedName("Op")
-    private String mOp;
+    private String operator;
+
     @SerializedName("OpIcao")
-    private String mOpIcao;
+    private String operatorIcao;
+
+    /**
+     * Tracked position time in milliseconds
+     */
     @SerializedName("PosTime")
-    private java.lang.Long mPosTime;
-    @SerializedName("Rcvr")
-    private java.lang.Long mRcvr;
+    private long positionTime;
+
     @SerializedName("Reg")
-    private String mReg;
-    @SerializedName("Sig")
-    private java.lang.Long mSig;
+    private String registration;
+
     @SerializedName("Spd")
-    private float mSpd;
-    @SerializedName("SpdTyp")
-    private java.lang.Long mSpdTyp;
+    private float speed;
+
+    /**
+     General Aircraft Type based on the ICAO code
+     0 = None
+     1 = Land Plane
+     2 = Sea Plane
+     3 = Amphibian
+     4 = Helicopter
+     5 = Gyrocopter
+     6 = Tiltwing
+     7 = Ground Vehicle
+     8 = Tower
+     */
     @SerializedName("Species")
-    private java.lang.Long mSpecies;
+    private short aircraftType;
+
     @SerializedName("Sqk")
-    private String mSqk;
-    @SerializedName("TAlt")
-    private java.lang.Long mTAlt;
-    @SerializedName("TSecs")
-    private java.lang.Long mTSecs;
-    @SerializedName("TTrk")
-    private float mTTrk;
-    @SerializedName("Tisb")
-    private Boolean mTisb;
+    private String sqwak;
+
     @SerializedName("To")
-    private String mTo;
+    private String to;
+
     @SerializedName("Trak")
-    private Double mTrak;
-    @SerializedName("TrkH")
-    private Boolean mTrkH;
-    @SerializedName("Trt")
-    private java.lang.Long mTrt;
+    private float heading;
+
     @SerializedName("Type")
-    private String mType;
+    private String modelIcao;
+
+    /**
+     * Vertical speed in feet per minute
+     */
     @SerializedName("Vsi")
-    private java.lang.Long mVsi;
-    @SerializedName("VsiT")
-    private java.lang.Long mVsiT;
+    private int verticalSpeed;
+
+
+    /**
+     wake Turbulence Category
+     0 = None
+     1 = Light
+     2 = Medium
+     3 = Heavy
+     */
     @SerializedName("WTC")
-    private java.lang.Long mWTC;
+    private short turbulenceCategory;
+
     @SerializedName("Year")
-    private String mYear;
+    private String age;
 
-    public java.lang.Long getAlt() {
-        return mAlt;
+    public int getAltitudGround() {
+        return altitudGround;
     }
 
-    public void setAlt(java.lang.Long Alt) {
-        mAlt = Alt;
+    public String getSerial() {
+        return serial;
     }
 
-    public java.lang.Long getAltT() {
-        return mAltT;
+    public String getCallsign() {
+        return callsign;
     }
 
-    public void setAltT(java.lang.Long AltT) {
-        mAltT = AltT;
+    public String getAircraftCountry() {
+        return aircraftCountry;
     }
 
-    public Boolean getBad() {
-        return mBad;
+    public short getEngineMount() {
+        return engineMount;
     }
 
-    public void setBad(Boolean Bad) {
-        mBad = Bad;
+    public short getEngineType() {
+        return engineType;
     }
 
-    public Double getBrng() {
-        return mBrng;
-    }
-
-    public void setBrng(Double Brng) {
-        mBrng = Brng;
-    }
-
-    public java.lang.Long getCMsgs() {
-        return mCMsgs;
-    }
-
-    public void setCMsgs(java.lang.Long CMsgs) {
-        mCMsgs = CMsgs;
-    }
-
-    public String getCNum() {
-        return mCNum;
-    }
-
-    public void setCNum(String CNum) {
-        mCNum = CNum;
-    }
-
-    public String getCall() {
-        return mCall;
-    }
-
-    public void setCall(String Call) {
-        mCall = Call;
-    }
-
-    public Boolean getCallSus() {
-        return mCallSus;
-    }
-
-    public void setCallSus(Boolean CallSus) {
-        mCallSus = CallSus;
-    }
-
-    public String getCou() {
-        return mCou;
-    }
-
-    public void setCou(String Cou) {
-        mCou = Cou;
-    }
-
-    public Double getDst() {
-        return mDst;
-    }
-
-    public void setDst(Double Dst) {
-        mDst = Dst;
-    }
-
-    public java.lang.Long getEngMount() {
-        return mEngMount;
-    }
-
-    public void setEngMount(java.lang.Long EngMount) {
-        mEngMount = EngMount;
-    }
-
-    public java.lang.Long getEngType() {
-        return mEngType;
-    }
-
-    public void setEngType(java.lang.Long EngType) {
-        mEngType = EngType;
-    }
-
-    public String getEngines() {
-        return mEngines;
-    }
-
-    public void setEngines(String Engines) {
-        mEngines = Engines;
-    }
-
-    public String getFSeen() {
-        return mFSeen;
-    }
-
-    public void setFSeen(String FSeen) {
-        mFSeen = FSeen;
-    }
-
-    public java.lang.Long getFlightsCount() {
-        return mFlightsCount;
-    }
-
-    public void setFlightsCount(java.lang.Long FlightsCount) {
-        mFlightsCount = FlightsCount;
+    public short getEnginesNum() {
+        return enginesNum;
     }
 
     public String getFrom() {
-        return mFrom;
+        return from;
     }
 
-    public void setFrom(String From) {
-        mFrom = From;
+    public int getAltitudeSeaLevel() {
+        return altitudeSeaLevel;
     }
 
-    public java.lang.Long getGAlt() {
-        return mGAlt;
+    public boolean isOnGround() {
+        return onGround;
     }
 
-    public void setGAlt(java.lang.Long GAlt) {
-        mGAlt = GAlt;
+    public boolean isHelp() {
+        return help;
     }
 
-    public Boolean getGnd() {
-        return mGnd;
+    public String getIdBroadcastIcao() {
+        return idBroadcastIcao;
     }
 
-    public void setGnd(Boolean Gnd) {
-        mGnd = Gnd;
+    public boolean isInteresting() {
+        return interesting;
     }
 
-    public Boolean getHasPic() {
-        return mHasPic;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setHasPic(Boolean HasPic) {
-        mHasPic = HasPic;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public Boolean getHasSig() {
-        return mHasSig;
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public void setHasSig(Boolean HasSig) {
-        mHasSig = HasSig;
+    public String getModelDescription() {
+        return modelDescription;
     }
 
-    public Boolean getHelp() {
-        return mHelp;
+    public boolean isMilitary() {
+        return military;
     }
 
-    public void setHelp(Boolean Help) {
-        mHelp = Help;
+    public String getOperator() {
+        return operator;
     }
 
-    public String getIcao() {
-        return mIcao;
+    public String getOperatorIcao() {
+        return operatorIcao;
     }
 
-    public void setIcao(String Icao) {
-        mIcao = Icao;
+    public long getPositionTime() {
+        return positionTime;
     }
 
-    public java.lang.Long getId() {
-        return mId;
+    public String getRegistration() {
+        return registration;
     }
 
-    public void setId(java.lang.Long Id) {
-        mId = Id;
+    public float getSpeed() {
+        return speed;
     }
 
-    public Double getInHg() {
-        return mInHg;
+    public short getAircraftType() {
+        return aircraftType;
     }
 
-    public void setInHg(Double InHg) {
-        mInHg = InHg;
-    }
-
-    public Boolean getInterested() {
-        return mInterested;
-    }
-
-    public void setInterested(Boolean Interested) {
-        mInterested = Interested;
-    }
-
-    public Double getLat() {
-        return mLat;
-    }
-
-    public void setLat(Double Lat) {
-        mLat = Lat;
-    }
-
-    public Double getLong() {
-        return mLong;
-    }
-
-    public void setLong(Double Long) {
-        mLong = Long;
-    }
-
-    public String getMan() {
-        return mMan;
-    }
-
-    public void setMan(String Man) {
-        mMan = Man;
-    }
-
-    public String getMdl() {
-        return mMdl;
-    }
-
-    public void setMdl(String Mdl) {
-        mMdl = Mdl;
-    }
-
-    public Boolean getMil() {
-        return mMil;
-    }
-
-    public void setMil(Boolean Mil) {
-        mMil = Mil;
-    }
-
-    public Boolean getMlat() {
-        return mMlat;
-    }
-
-    public void setMlat(Boolean Mlat) {
-        mMlat = Mlat;
-    }
-
-    public String getOp() {
-        return mOp;
-    }
-
-    public void setOp(String Op) {
-        mOp = Op;
-    }
-
-    public String getOpIcao() {
-        return mOpIcao;
-    }
-
-    public void setOpIcao(String OpIcao) {
-        mOpIcao = OpIcao;
-    }
-
-    public java.lang.Long getPosTime() {
-        return mPosTime;
-    }
-
-    public void setPosTime(java.lang.Long PosTime) {
-        mPosTime = PosTime;
-    }
-
-    public java.lang.Long getRcvr() {
-        return mRcvr;
-    }
-
-    public void setRcvr(java.lang.Long Rcvr) {
-        mRcvr = Rcvr;
-    }
-
-    public String getReg() {
-        return mReg;
-    }
-
-    public void setReg(String Reg) {
-        mReg = Reg;
-    }
-
-    public java.lang.Long getSig() {
-        return mSig;
-    }
-
-    public void setSig(java.lang.Long Sig) {
-        mSig = Sig;
-    }
-
-    public float getSpd() {
-        return mSpd;
-    }
-
-    public void setSpd(java.lang.Long Spd) {
-        mSpd = Spd;
-    }
-
-    public java.lang.Long getSpdTyp() {
-        return mSpdTyp;
-    }
-
-    public void setSpdTyp(java.lang.Long SpdTyp) {
-        mSpdTyp = SpdTyp;
-    }
-
-    public java.lang.Long getSpecies() {
-        return mSpecies;
-    }
-
-    public void setSpecies(java.lang.Long Species) {
-        mSpecies = Species;
-    }
-
-    public String getSqk() {
-        return mSqk;
-    }
-
-    public void setSqk(String Sqk) {
-        mSqk = Sqk;
-    }
-
-    public java.lang.Long getTAlt() {
-        return mTAlt;
-    }
-
-    public void setTAlt(java.lang.Long TAlt) {
-        mTAlt = TAlt;
-    }
-
-    public java.lang.Long getTSecs() {
-        return mTSecs;
-    }
-
-    public void setTSecs(java.lang.Long TSecs) {
-        mTSecs = TSecs;
-    }
-
-    public float getTTrk() {
-        return mTTrk;
-    }
-
-    public void setTTrk(float TTrk) {
-        mTTrk = TTrk;
-    }
-
-    public Boolean getTisb() {
-        return mTisb;
-    }
-
-    public void setTisb(Boolean Tisb) {
-        mTisb = Tisb;
+    public String getSqwak() {
+        return sqwak;
     }
 
     public String getTo() {
-        return mTo;
+        return to;
     }
 
-    public void setTo(String To) {
-        mTo = To;
+    public float getHeading() {
+        return heading;
     }
 
-    public Double getTrak() {
-        return mTrak;
+    public String getModelIcao() {
+        return modelIcao;
     }
 
-    public void setTrak(Double Trak) {
-        mTrak = Trak;
+    public int getVerticalSpeed() {
+        return verticalSpeed;
     }
 
-    public Boolean getTrkH() {
-        return mTrkH;
+    public short getTurbulenceCategory() {
+        return turbulenceCategory;
     }
 
-    public void setTrkH(Boolean TrkH) {
-        mTrkH = TrkH;
+    public String getAge() {
+        return age;
     }
-
-    public java.lang.Long getTrt() {
-        return mTrt;
-    }
-
-    public void setTrt(java.lang.Long Trt) {
-        mTrt = Trt;
-    }
-
-    public String getType() {
-        return mType;
-    }
-
-    public void setType(String Type) {
-        mType = Type;
-    }
-
-    public java.lang.Long getVsi() {
-        return mVsi;
-    }
-
-    public void setVsi(java.lang.Long Vsi) {
-        mVsi = Vsi;
-    }
-
-    public java.lang.Long getVsiT() {
-        return mVsiT;
-    }
-
-    public void setVsiT(java.lang.Long VsiT) {
-        mVsiT = VsiT;
-    }
-
-    public java.lang.Long getWTC() {
-        return mWTC;
-    }
-
-    public void setWTC(java.lang.Long WTC) {
-        mWTC = WTC;
-    }
-
-    public String getYear() {
-        return mYear;
-    }
-
-    public void setYear(String Year) {
-        mYear = Year;
-    }
-
 }
