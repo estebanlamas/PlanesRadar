@@ -11,16 +11,14 @@ import com.estebanlamas.planesradar.presentation.BaseActivity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class MapActivity extends BaseActivity implements OnMapReadyCallback {
-    @Inject
-    MapViewModel mapViewModel;
+public class MapActivity extends BaseActivity implements OnMapReadyCallback, Observer<List<AircraftResponse>> {
+    @Inject MapViewModel mapViewModel;
+    @Inject AircraftMarker aircraftMarker;
 
     private GoogleMap googleMap;
 
@@ -45,19 +43,28 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         return R.layout.activity_maps;
     }
 
+    /*********************
+     * OnMapReadyCallback
+     ********************/
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
+        this.mapViewModel.init();
+        this.mapViewModel.getAircraftList().observe(this, this);
+    }
 
-        mapViewModel.init();
-        mapViewModel.getAircraftList().observe(this, new Observer<List<AircraftResponse>>() {
-            @Override
-            public void onChanged(@Nullable List<AircraftResponse> aircraftResponses) {
-                for (AircraftResponse aircraftResponse : aircraftResponses) {
-                    LatLng latLon = new LatLng(aircraftResponse.getLat(),aircraftResponse.getLong());
-                    MapActivity.this.googleMap.addMarker(new MarkerOptions().position(latLon).title(aircraftResponse.getType()));
-                }
+    /************
+     * Observer
+     ***********/
+
+    @Override
+    public void onChanged(@Nullable List<AircraftResponse> aircraftResponses) {
+        if(googleMap!=null && aircraftResponses!=null) {
+            googleMap.clear();
+            for (AircraftResponse aircraftResponse : aircraftResponses) {
+                googleMap.addMarker(aircraftMarker.create(aircraftResponse));
             }
-        });
+        }
     }
 }

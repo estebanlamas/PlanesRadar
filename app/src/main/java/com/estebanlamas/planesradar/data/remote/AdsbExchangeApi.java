@@ -11,6 +11,6 @@ import retrofit2.http.POST;
 
 public interface AdsbExchangeApi {
 
-    @POST("VirtualRadar/AircraftList.json?lat=33.433638&lng=-112.008113&fDstL=0&fDstU=100")
+    @POST("VirtualRadar/AircraftList.json?lat=40.353715&lng=-3.6113506&fDstL=0&fDstU=100")
     Call<AircraftListResponse> getAircraftList();
 }
