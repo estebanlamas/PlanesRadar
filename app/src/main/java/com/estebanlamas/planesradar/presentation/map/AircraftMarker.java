@@ -2,7 +2,7 @@ package com.estebanlamas.planesradar.presentation.map;
 
 import com.estebanlamas.planesradar.R;
 import com.estebanlamas.planesradar.data.remote.model.AircraftResponse;
-import com.estebanlamas.planesradar.presentation.BitmapUtils;
+import com.estebanlamas.planesradar.presentation.utils.BitmapUtils;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 

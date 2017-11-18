@@ -3,7 +3,7 @@ package com.estebanlamas.planesradar.di.component;
 import android.app.Application;
 
 import com.estebanlamas.planesradar.di.module.AppModule;
-import com.estebanlamas.planesradar.di.module.MapModule;
+import com.estebanlamas.planesradar.presentation.map.di.MapModule;
 import com.estebanlamas.planesradar.di.module.NetworkModule;
 
 import javax.inject.Singleton;

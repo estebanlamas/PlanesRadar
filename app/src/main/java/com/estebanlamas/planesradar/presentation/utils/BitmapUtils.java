@@ -1,4 +1,4 @@
-package com.estebanlamas.planesradar.presentation;
+package com.estebanlamas.planesradar.presentation.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;

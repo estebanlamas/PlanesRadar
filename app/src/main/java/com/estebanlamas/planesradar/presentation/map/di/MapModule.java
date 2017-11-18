@@ -1,4 +1,4 @@
-package com.estebanlamas.planesradar.di.module;
+package com.estebanlamas.planesradar.presentation.map.di;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.FragmentActivity;
@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentActivity;
 import com.estebanlamas.planesradar.data.AircraftRepository;
 import com.estebanlamas.planesradar.data.remote.AdsbExchangeApi;
 import com.estebanlamas.planesradar.presentation.map.MapViewModel;
-import com.estebanlamas.planesradar.presentation.map.MapViewModelFactory;
 
 import dagger.Module;
 import dagger.Provides;

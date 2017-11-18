@@ -2,7 +2,7 @@ package com.estebanlamas.planesradar.di.component;
 
 
 import com.estebanlamas.planesradar.presentation.map.MapActivity;
-import com.estebanlamas.planesradar.di.module.MapModule;
+import com.estebanlamas.planesradar.presentation.map.di.MapModule;
 
 import dagger.Subcomponent;
 

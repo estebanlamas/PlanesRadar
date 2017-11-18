@@ -1,9 +1,10 @@
-package com.estebanlamas.planesradar.presentation.map;
+package com.estebanlamas.planesradar.presentation.map.di;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.estebanlamas.planesradar.data.AircraftRepository;
+import com.estebanlamas.planesradar.presentation.map.MapViewModel;
 
 /**
  * Created by esteban on 18/11/17

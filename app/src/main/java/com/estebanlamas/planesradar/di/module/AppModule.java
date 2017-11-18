@@ -2,7 +2,7 @@ package com.estebanlamas.planesradar.di.module;
 
 import android.app.Application;
 
-import com.estebanlamas.planesradar.presentation.BitmapUtils;
+import com.estebanlamas.planesradar.presentation.utils.BitmapUtils;
 import com.estebanlamas.planesradar.presentation.map.AircraftMarker;
 
 import javax.inject.Singleton;
