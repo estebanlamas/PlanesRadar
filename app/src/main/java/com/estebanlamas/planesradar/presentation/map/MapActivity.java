@@ -50,7 +50,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Obs
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-        this.mapViewModel.init();
         this.mapViewModel.getAircraftList().observe(this, this);
     }
 

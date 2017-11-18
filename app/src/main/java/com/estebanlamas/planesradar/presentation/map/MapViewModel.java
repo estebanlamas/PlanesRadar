@@ -1,8 +1,7 @@
 package com.estebanlamas.planesradar.presentation.map;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModel;
 
 import com.estebanlamas.planesradar.data.AircraftRepository;
 import com.estebanlamas.planesradar.data.remote.model.AircraftResponse;
@@ -13,19 +12,10 @@ import java.util.List;
  * Created by esteban on 24/9/17
  */
 
-public class MapViewModel extends AndroidViewModel{
+public class MapViewModel extends ViewModel {
     private LiveData<List<AircraftResponse>> aircraftList;
-    private AircraftRepository repository;
 
-    public MapViewModel(Application application) {
-        super(application);
-    }
-
-    public void setRepository(AircraftRepository repository) {
-        this.repository = repository;
-    }
-
-    public void init() {
+    public MapViewModel(AircraftRepository repository) {
         if(aircraftList!=null) {
             return;
         }
