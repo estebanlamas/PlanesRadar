@@ -2,6 +2,7 @@ package com.estebanlamas.planesradar.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.NonNull;
 
 import com.estebanlamas.planesradar.data.remote.AdsbExchangeApi;
 import com.estebanlamas.planesradar.data.remote.model.AircraftListResponse;
@@ -18,21 +19,22 @@ import retrofit2.Response;
  */
 
 public class AircraftRepository extends BaseRepository{
+    private MutableLiveData<List<AircraftResponse>> data;
 
     public AircraftRepository(AdsbExchangeApi adsbExchangeApi) {
         super(adsbExchangeApi);
+        data = new MutableLiveData<>();
     }
 
     public LiveData<List<AircraftResponse>> getAircraftList() {
-        final MutableLiveData<List<AircraftResponse>> data = new MutableLiveData<>();
         adsbExchangeApi.getAircraftList().enqueue(new Callback<AircraftListResponse>() {
             @Override
-            public void onResponse(Call<AircraftListResponse> call, Response<AircraftListResponse> response) {
+            public void onResponse(@NonNull Call<AircraftListResponse> call, @NonNull Response<AircraftListResponse> response) {
                 data.setValue(response.body().getAcList());
             }
 
             @Override
-            public void onFailure(Call<AircraftListResponse> call, Throwable throwable) {
+            public void onFailure(@NonNull Call<AircraftListResponse> call, @NonNull Throwable throwable) {
                 throwable.printStackTrace();
             }
         });

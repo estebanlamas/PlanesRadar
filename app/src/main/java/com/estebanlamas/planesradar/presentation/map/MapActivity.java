@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 
 import com.estebanlamas.planesradar.R;
 import com.estebanlamas.planesradar.data.remote.model.AircraftResponse;
-import com.estebanlamas.planesradar.presentation.map.di.MapModule;
 import com.estebanlamas.planesradar.presentation.BaseActivity;
+import com.estebanlamas.planesradar.presentation.map.di.MapModule;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
