@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.estebanlamas.planesradar.data.AircraftRepository;
-import com.estebanlamas.planesradar.data.remote.model.AircraftResponse;
+import com.estebanlamas.planesradar.presentation.model.Aircraft;
 
 import java.util.List;
 import java.util.Timer;
@@ -16,7 +16,7 @@ import java.util.TimerTask;
 
 public class MapViewModel extends ViewModel {
     private static final int REFRESH_MILLISECONDS = 3000;
-    private LiveData<List<AircraftResponse>> aircraftList;
+    private LiveData<List<Aircraft>> aircraftList;
     private Timer refreshTimer = new Timer();
 
     public MapViewModel(AircraftRepository repository) {
@@ -26,7 +26,7 @@ public class MapViewModel extends ViewModel {
         initRadar(repository);
     }
 
-    LiveData<List<AircraftResponse>> getAircraftList() {
+    LiveData<List<Aircraft>> getAircraftList() {
         return aircraftList;
     }
 

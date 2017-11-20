@@ -1,20 +1,12 @@
+package com.estebanlamas.planesradar.presentation.model;
 
-package com.estebanlamas.planesradar.data.remote.model;
-
-import com.google.gson.annotations.SerializedName;
-
-public class AircraftResponse {
-
-    @SerializedName("Alt")
+public class Aircraft {
     private int altitudGround;
 
-    @SerializedName("CNum")
     private String serial;
 
-    @SerializedName("Call")
     private String callsign;
 
-    @SerializedName("Cou")
     private String aircraftCountry;
 
     /**
@@ -25,7 +17,6 @@ public class AircraftResponse {
      4 = Nose Mounted
      5 = Wing Mounted
      */
-    @SerializedName("EngMount")
     private short engineMount;
 
     /**
@@ -35,61 +26,43 @@ public class AircraftResponse {
      3 = Jet
      4 = Electric
      */
-    @SerializedName("EngType")
     private short engineType;
 
-    @SerializedName("Engines")
     private short enginesNum;
 
-    @SerializedName("From")
     private String from;
 
-    @SerializedName("GAlt")
     private int altitudeSeaLevel;
 
-    @SerializedName("Gnd")
     private boolean onGround;
 
-    @SerializedName("Help")
     private boolean help;
 
-    @SerializedName("Icao")
     private String idBroadcastIcao;
 
-    @SerializedName("Interested")
     private boolean interesting;
 
-    @SerializedName("Lat")
     private Double latitude;
 
-    @SerializedName("Long")
     private Double longitude;
 
-    @SerializedName("Man")
     private String manufacturer;
 
-    @SerializedName("Mdl")
     private String modelDescription;
 
-    @SerializedName("Mil")
     private boolean military;
 
-    @SerializedName("Op")
     private String operator;
 
-    @SerializedName("OpIcao")
     private String operatorIcao;
 
     /**
      * Tracked position time in milliseconds
      */
-    @SerializedName("PosTime")
     private long positionTime;
 
-    @SerializedName("Reg")
     private String registration;
 
-    @SerializedName("Spd")
     private float speed;
 
     /**
@@ -104,27 +77,20 @@ public class AircraftResponse {
      7 = Ground Vehicle
      8 = Tower
      */
-    @SerializedName("Species")
     private short aircraftType;
 
-    @SerializedName("Sqk")
     private String sqwak;
 
-    @SerializedName("To")
     private String to;
 
-    @SerializedName("Trak")
     private float heading;
 
-    @SerializedName("Type")
     private String modelIcao;
 
     /**
      * Vertical speed in feet per minute
      */
-    @SerializedName("Vsi")
     private int verticalSpeed;
-
 
     /**
      wake Turbulence Category
@@ -133,10 +99,8 @@ public class AircraftResponse {
      2 = Medium
      3 = Heavy
      */
-    @SerializedName("WTC")
     private short turbulenceCategory;
 
-    @SerializedName("Year")
     private String age;
 
     public int getAltitudGround() {
@@ -261,5 +225,129 @@ public class AircraftResponse {
 
     public String getAge() {
         return age;
+    }
+
+    public void setAltitudGround(int altitudGround) {
+        this.altitudGround = altitudGround;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public void setCallsign(String callsign) {
+        this.callsign = callsign;
+    }
+
+    public void setAircraftCountry(String aircraftCountry) {
+        this.aircraftCountry = aircraftCountry;
+    }
+
+    public void setEngineMount(short engineMount) {
+        this.engineMount = engineMount;
+    }
+
+    public void setEngineType(short engineType) {
+        this.engineType = engineType;
+    }
+
+    public void setEnginesNum(short enginesNum) {
+        this.enginesNum = enginesNum;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setAltitudeSeaLevel(int altitudeSeaLevel) {
+        this.altitudeSeaLevel = altitudeSeaLevel;
+    }
+
+    public void setOnGround(boolean onGround) {
+        this.onGround = onGround;
+    }
+
+    public void setHelp(boolean help) {
+        this.help = help;
+    }
+
+    public void setIdBroadcastIcao(String idBroadcastIcao) {
+        this.idBroadcastIcao = idBroadcastIcao;
+    }
+
+    public void setInteresting(boolean interesting) {
+        this.interesting = interesting;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setModelDescription(String modelDescription) {
+        this.modelDescription = modelDescription;
+    }
+
+    public void setMilitary(boolean military) {
+        this.military = military;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
+    public void setOperatorIcao(String operatorIcao) {
+        this.operatorIcao = operatorIcao;
+    }
+
+    public void setPositionTime(long positionTime) {
+        this.positionTime = positionTime;
+    }
+
+    public void setRegistration(String registration) {
+        this.registration = registration;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public void setAircraftType(short aircraftType) {
+        this.aircraftType = aircraftType;
+    }
+
+    public void setSqwak(String sqwak) {
+        this.sqwak = sqwak;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public void setHeading(float heading) {
+        this.heading = heading;
+    }
+
+    public void setModelIcao(String modelIcao) {
+        this.modelIcao = modelIcao;
+    }
+
+    public void setVerticalSpeed(int verticalSpeed) {
+        this.verticalSpeed = verticalSpeed;
+    }
+
+    public void setTurbulenceCategory(short turbulenceCategory) {
+        this.turbulenceCategory = turbulenceCategory;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 }

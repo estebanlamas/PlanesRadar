@@ -1,6 +1,6 @@
 package com.estebanlamas.planesradar.data.remote;
 
-import com.estebanlamas.planesradar.data.remote.model.AircraftListResponse;
+import com.estebanlamas.planesradar.data.remote.response.AircraftListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.POST;

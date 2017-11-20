@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.estebanlamas.planesradar.R;
-import com.estebanlamas.planesradar.data.remote.model.AircraftResponse;
 import com.estebanlamas.planesradar.presentation.BaseActivity;
 import com.estebanlamas.planesradar.presentation.map.di.MapModule;
+import com.estebanlamas.planesradar.presentation.model.Aircraft;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MapActivity extends BaseActivity implements OnMapReadyCallback, Observer<List<AircraftResponse>> {
+public class MapActivity extends BaseActivity implements OnMapReadyCallback, Observer<List<Aircraft>> {
     @Inject MapViewModel mapViewModel;
     @Inject AircraftMarker aircraftMarker;
 
@@ -58,11 +58,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Obs
      ***********/
 
     @Override
-    public void onChanged(@Nullable List<AircraftResponse> aircraftResponses) {
-        if(googleMap!=null && aircraftResponses!=null) {
+    public void onChanged(@Nullable List<Aircraft> aircraftList) {
+        if(googleMap!=null && aircraftList!=null) {
             googleMap.clear();
-            for (AircraftResponse aircraftResponse : aircraftResponses) {
-                googleMap.addMarker(aircraftMarker.create(aircraftResponse));
+            for (Aircraft aircraft : aircraftList) {
+                googleMap.addMarker(aircraftMarker.create(aircraft));
             }
         }
     }

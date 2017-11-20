@@ -1,5 +1,5 @@
 
-package com.estebanlamas.planesradar.data.remote.model;
+package com.estebanlamas.planesradar.data.remote.response;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,7 +1,7 @@
 package com.estebanlamas.planesradar.presentation.map;
 
 import com.estebanlamas.planesradar.R;
-import com.estebanlamas.planesradar.data.remote.model.AircraftResponse;
+import com.estebanlamas.planesradar.presentation.model.Aircraft;
 import com.estebanlamas.planesradar.presentation.utils.BitmapUtils;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -17,12 +17,12 @@ public class AircraftMarker {
         this.bitmapUtils = bitmapUtils;
     }
 
-    public MarkerOptions create(AircraftResponse aircraftResponse) {
-        LatLng latLon = new LatLng(aircraftResponse.getLatitude(),aircraftResponse.getLongitude());
+    public MarkerOptions create(Aircraft aircraft) {
+        LatLng latLon = new LatLng(aircraft.getLatitude(),aircraft.getLongitude());
         return new MarkerOptions()
                 .position(latLon)
-                .title(aircraftResponse.getCallsign())
-                .rotation(aircraftResponse.getHeading())
+                .title(aircraft.getCallsign())
+                .rotation(aircraft.getHeading())
                 .icon(bitmapUtils.getBitmapDescriptorFromVector(R.drawable.ic_a320))
                 .anchor(0.5f,0.5f);
     }
