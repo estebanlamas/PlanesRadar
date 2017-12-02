@@ -11,6 +11,8 @@ import com.estebanlamas.planesradar.presentation.model.Aircraft;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,6 +24,7 @@ import retrofit2.Response;
 public class AircraftRepository extends BaseRepository{
     private MutableLiveData<List<Aircraft>> data;
 
+    @Inject
     public AircraftRepository(AdsbExchangeApi adsbExchangeApi) {
         super(adsbExchangeApi);
         data = new MutableLiveData<>();

@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.FragmentActivity;
 
 import com.estebanlamas.planesradar.data.AircraftRepository;
-import com.estebanlamas.planesradar.data.remote.AdsbExchangeApi;
 import com.estebanlamas.planesradar.presentation.map.MapViewModel;
 
 import dagger.Module;
@@ -28,13 +27,4 @@ public class MapModule {
         return ViewModelProviders.of(fragmentActivity, mapViewModelFactory).get(MapViewModel.class);
     }
 
-    @Provides
-    public AircraftRepository provideAircraftRepository(AdsbExchangeApi adsbExchangeApi){
-        return new AircraftRepository(adsbExchangeApi);
-    }
-
-    @Provides
-    public MapViewModelFactory provideMapViewModelFactory(AircraftRepository aircraftRepository) {
-        return new MapViewModelFactory(aircraftRepository);
-    }
 }

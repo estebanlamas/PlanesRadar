@@ -6,12 +6,15 @@ import android.arch.lifecycle.ViewModelProvider;
 import com.estebanlamas.planesradar.data.AircraftRepository;
 import com.estebanlamas.planesradar.presentation.map.MapViewModel;
 
+import javax.inject.Inject;
+
 /**
  * Created by esteban on 18/11/17
  */
 public class MapViewModelFactory implements ViewModelProvider.Factory {
     private AircraftRepository aircraftRepository;
 
+    @Inject
     public MapViewModelFactory(AircraftRepository aircraftRepository) {
         this.aircraftRepository = aircraftRepository;
     }
