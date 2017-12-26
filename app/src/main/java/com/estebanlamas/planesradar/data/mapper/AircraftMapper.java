@@ -2,7 +2,7 @@ package com.estebanlamas.planesradar.data.mapper;
 
 import com.estebanlamas.planesradar.data.remote.response.AircraftListResponse;
 import com.estebanlamas.planesradar.data.remote.response.AircraftResponse;
-import com.estebanlamas.planesradar.presentation.model.Aircraft;
+import com.estebanlamas.planesradar.domain.model.Aircraft;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,10 +5,14 @@ import android.app.Application;
 import com.estebanlamas.planesradar.presentation.utils.BitmapUtils;
 import com.estebanlamas.planesradar.presentation.map.AircraftMarker;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 @Module
 public class AppModule {
@@ -34,5 +38,15 @@ public class AppModule {
     @Singleton
     AircraftMarker providesAircraftMarker(BitmapUtils bitmapUtils) {
         return new AircraftMarker(bitmapUtils);
+    }
+
+    @Provides @Named("executor")
+    Scheduler provideExecutorThread() {
+        return Schedulers.newThread();
+    }
+
+    @Provides @Named("ui")
+    Scheduler provideUiThread() {
+        return AndroidSchedulers.mainThread();
     }
 }

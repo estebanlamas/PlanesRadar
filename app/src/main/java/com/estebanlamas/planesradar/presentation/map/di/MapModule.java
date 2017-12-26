@@ -1,10 +1,11 @@
 package com.estebanlamas.planesradar.presentation.map.di;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.FragmentActivity;
 
-import com.estebanlamas.planesradar.data.AircraftRepository;
-import com.estebanlamas.planesradar.presentation.map.MapViewModel;
+import com.estebanlamas.planesradar.data.AircraftDataRepository;
+import com.estebanlamas.planesradar.domain.GetAircraftsUseCase;
+import com.estebanlamas.planesradar.domain.repository.AircraftRepository;
+import com.estebanlamas.planesradar.presentation.map.MapPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,8 +24,13 @@ public class MapModule {
     }
 
     @Provides
-    public MapViewModel provideMapViewModel(FragmentActivity fragmentActivity, MapViewModelFactory mapViewModelFactory, AircraftRepository repository) {
-        return ViewModelProviders.of(fragmentActivity, mapViewModelFactory).get(MapViewModel.class);
+    public MapPresenter provideMapPresenter(GetAircraftsUseCase getAircraftsUseCase) {
+        return new MapPresenter(getAircraftsUseCase);
+    }
+
+    @Provides
+    public AircraftRepository provideAircraftRepository(AircraftDataRepository aircraftDataRepository) {
+        return aircraftDataRepository;
     }
 
 }

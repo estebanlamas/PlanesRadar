@@ -14,6 +14,7 @@ ext {
 
 android {
     compileSdkVersion 26
+
     defaultConfig {
         applicationId "com.estebanlamas.planesradar"
         minSdkVersion 21
@@ -22,48 +23,51 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     // Support
     compile "com.android.support:appcompat-v7:${supportVersion}"
-
     // Play services
     compile "com.google.android.gms:play-services-maps:${playServicesVersion}"
-
     // Network Connections
     compile "com.squareup.retrofit2:retrofit:${retrofit2Version}"
     compile "com.squareup.retrofit2:converter-gson:${retrofit2Version}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}"
     compile "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
     compile "com.squareup.okhttp3:okhttp-urlconnection:${okHttpVersion}"
-
     // Mapper
     compile "com.google.code.gson:gson:${gsonVersion}"
-
     // Injection
     compile "com.google.dagger:dagger:${daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
     provided 'javax.annotation:jsr250-api:1.0'
-
     // Rx
     compile "io.reactivex:rxandroid:${rxAndroid}"
     compile "io.reactivex:rxjava:${rxJava}"
-
     // Testing
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
     testCompile 'junit:junit:4.12'
-
-    testCompile "org.robolectric:robolectric:3.2"
-    testCompile "org.mockito:mockito-core:1.10.19"
+    testCompile 'org.robolectric:robolectric:3.2'
+    testCompile 'org.mockito:mockito-core:1.10.19'
 }

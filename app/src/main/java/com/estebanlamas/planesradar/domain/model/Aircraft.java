@@ -1,4 +1,4 @@
-package com.estebanlamas.planesradar.presentation.model;
+package com.estebanlamas.planesradar.domain.model;
 
 public class Aircraft {
     private int altitudGround;

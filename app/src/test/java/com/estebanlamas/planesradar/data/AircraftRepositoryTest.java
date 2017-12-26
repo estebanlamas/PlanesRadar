@@ -5,7 +5,7 @@ import android.arch.lifecycle.LiveData;
 import com.estebanlamas.planesradar.BuildConfig;
 import com.estebanlamas.planesradar.data.common.MockApiResponse;
 import com.estebanlamas.planesradar.data.common.TestNetworkModule;
-import com.estebanlamas.planesradar.presentation.model.Aircraft;
+import com.estebanlamas.planesradar.domain.model.Aircraft;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 23)
 public class AircraftRepositoryTest extends MockWebServerTest {
-    private AircraftRepository aircraftRepository;
+    private AircraftDataRepository aircraftRepository;
     private TestNetworkModule networkModule;
 
 
@@ -35,7 +35,7 @@ public class AircraftRepositoryTest extends MockWebServerTest {
     @Before
     public void setUp() throws Exception {
         server = networkModule.getMockWebServer();
-        aircraftRepository = new AircraftRepository(networkModule.getApiService());
+        aircraftRepository = new AircraftDataRepository(networkModule.getApiService());
     }
 
     @After

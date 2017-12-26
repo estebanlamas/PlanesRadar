@@ -6,12 +6,12 @@ import com.estebanlamas.planesradar.data.remote.ApiConstants;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -39,8 +39,9 @@ public class NetworkModule {
     Retrofit provideRetrofitClient(OkHttpClient client) {
         return new Retrofit.Builder()
                 .baseUrl(ApiConstants.ADSB_ENDPOINT)
-                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(client)
                 .build();
     }
 
