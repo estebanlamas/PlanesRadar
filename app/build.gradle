@@ -5,9 +5,11 @@ ext {
     okHttpVersion = '3.9.0'
     gsonVersion = '2.8.0'
     supportVersion = '26.1.0'
-    playServicesVersion = '11.6.0'
+    playServicesVersion = '11.8.0'
     daggerVersion = '2.9'
-    lifecycleVersion = '1.0.0'
+    rxAndroid = '0.24.0'
+    rxJava = '1.0.0'
+    javaXAnnotation = '10.0-b28'
 }
 
 android {
@@ -51,10 +53,9 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
     provided 'javax.annotation:jsr250-api:1.0'
 
-    // Architecture dependencies
-    compile "android.arch.lifecycle:extensions:${lifecycleVersion}"
-    compile "android.arch.lifecycle:runtime:${lifecycleVersion}"
-    annotationProcessor "android.arch.lifecycle:compiler:${lifecycleVersion}"
+    // Rx
+    compile "io.reactivex:rxandroid:${rxAndroid}"
+    compile "io.reactivex:rxjava:${rxJava}"
 
     // Testing
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
