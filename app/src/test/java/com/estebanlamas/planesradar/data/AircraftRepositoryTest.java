@@ -1,7 +1,5 @@
 package com.estebanlamas.planesradar.data;
 
-import android.arch.lifecycle.LiveData;
-
 import com.estebanlamas.planesradar.BuildConfig;
 import com.estebanlamas.planesradar.data.common.MockApiResponse;
 import com.estebanlamas.planesradar.data.common.TestNetworkModule;
@@ -16,6 +14,9 @@ import org.robolectric.annotation.Config;
 
 import java.util.List;
 
+import rx.Observable;
+import rx.observers.TestSubscriber;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -26,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 public class AircraftRepositoryTest extends MockWebServerTest {
     private AircraftDataRepository aircraftRepository;
     private TestNetworkModule networkModule;
-
+    private TestSubscriber<List<Aircraft>> subscriber = new TestSubscriber<>();
 
     public AircraftRepositoryTest() {
         networkModule = new TestNetworkModule();
@@ -46,7 +47,29 @@ public class AircraftRepositoryTest extends MockWebServerTest {
     @Test
     public void onExecuteReturnAllAicrafts() throws Exception {
         server.enqueue(MockApiResponse.serviceAircraftListOk());
-        final LiveData<List<Aircraft>> aircrafts =  aircraftRepository.getAircraftList();
-        assertEquals(200,aircrafts.getValue().size());
+        Observable<List<Aircraft>> aircrafts =  aircraftRepository.getAircraftList();
+
+        aircrafts.subscribe(subscriber);
+
+        assertEquals(16,subscriber.getOnNextEvents().get(0).size());
+        subscriber.assertCompleted();
+        subscriber.assertNoErrors();
+    }
+
+    @Test
+    public void onExecuteReturnAicraftInfo() throws Exception {
+        server.enqueue(MockApiResponse.serviceAircraftListOk());
+        Observable<List<Aircraft>> aircrafts =  aircraftRepository.getAircraftList();
+
+        aircrafts.subscribe(subscriber);
+
+        List<Aircraft> aircraftList = subscriber.getOnNextEvents().get(0);
+        assertEqualsAircraft(aircraftList.get(0));
+    }
+
+    private void assertEqualsAircraft(Aircraft aircraft){
+        assertEquals("B-8226", aircraft.getRegistration());
+        assertEquals("78028E", aircraft.getIdBroadcastIcao());
+        assertEquals("Airbus A330 243", aircraft.getModelDescription());
     }
 }

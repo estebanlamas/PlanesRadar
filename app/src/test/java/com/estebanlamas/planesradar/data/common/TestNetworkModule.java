@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.mockwebserver.MockWebServer;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TestNetworkModule {
@@ -42,6 +43,7 @@ public class TestNetworkModule {
     private Retrofit getRetrofitTest() {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(mockWebServer.url(getEndPoint()))
                 .client(getOkHttpClient())
                 .build();
