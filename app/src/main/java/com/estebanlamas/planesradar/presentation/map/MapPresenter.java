@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 import javax.inject.Inject;
 
 import rx.Subscription;
