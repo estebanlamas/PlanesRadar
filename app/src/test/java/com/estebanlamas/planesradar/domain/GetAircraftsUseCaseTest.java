@@ -1,5 +1,6 @@
 package com.estebanlamas.planesradar.domain;
 
+import com.estebanlamas.planesradar.domain.executor.PostExecutionThread;
 import com.estebanlamas.planesradar.domain.model.Aircraft;
 import com.estebanlamas.planesradar.domain.repository.AircraftRepository;
 
@@ -31,14 +32,14 @@ public class GetAircraftsUseCaseTest {
     AircraftRepository repository;
 
     @Mock
-    Scheduler mockUiScheduler;
+    Scheduler mockExecutorScheduler;
 
     @Mock
-    Scheduler mockExecutorScheduler;
+    PostExecutionThread mockUiScheduler;
 
     @Before
     public void setUp() throws Exception {
-        getAircraftsUseCase = new GetAircraftsUseCase(mockUiScheduler, mockExecutorScheduler,repository);
+        getAircraftsUseCase = new GetAircraftsUseCase(mockExecutorScheduler,mockUiScheduler,repository);
     }
 
     @Test

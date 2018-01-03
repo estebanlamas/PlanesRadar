@@ -1,5 +1,7 @@
 package com.estebanlamas.planesradar.domain;
 
+import com.estebanlamas.planesradar.domain.executor.PostExecutionThread;
+
 import rx.Observable;
 import rx.Scheduler;
 
@@ -8,16 +10,19 @@ import rx.Scheduler;
  */
 
 public abstract class UseCase<T> {
-    protected final Scheduler uiThread;
-    protected final Scheduler executorThread;
+    private final Scheduler threadExecutor;
+    private final PostExecutionThread mainThread;
 
-    public UseCase(Scheduler uiThread, Scheduler executorThread) {
-        this.uiThread = uiThread;
-        this.executorThread = executorThread;
+    public UseCase(Scheduler threadExecutor, PostExecutionThread postExecutionThread) {
+        this.threadExecutor = threadExecutor;
+        this.mainThread = postExecutionThread;
     }
 
     public abstract Observable<T> buildObservable();
+
     public Observable<T> execute() {
-        return buildObservable();
+        return buildObservable()
+                .observeOn(mainThread.getScheduler())
+                .subscribeOn(threadExecutor);
     }
 }

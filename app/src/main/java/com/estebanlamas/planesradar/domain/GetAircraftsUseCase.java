@@ -1,12 +1,12 @@
 package com.estebanlamas.planesradar.domain;
 
+import com.estebanlamas.planesradar.domain.executor.PostExecutionThread;
 import com.estebanlamas.planesradar.domain.repository.AircraftRepository;
 import com.estebanlamas.planesradar.domain.model.Aircraft;
 
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import rx.Observable;
 import rx.Scheduler;
@@ -19,17 +19,15 @@ public class GetAircraftsUseCase extends UseCase<List<Aircraft>> {
     private AircraftRepository aircraftRepository;
 
     @Inject
-    public GetAircraftsUseCase(@Named("ui")Scheduler uiThread,
-                               @Named("executor")Scheduler executorThread,
+    public GetAircraftsUseCase(Scheduler threadExecutor,
+                               PostExecutionThread postExecutionThread,
                                AircraftRepository aircraftRepository) {
-        super(uiThread, executorThread);
+        super(threadExecutor, postExecutionThread);
         this.aircraftRepository = aircraftRepository;
     }
 
     @Override
     public Observable<List<Aircraft>> buildObservable() {
-        return aircraftRepository.getAircraftList()
-                .observeOn(uiThread)
-                .subscribeOn(executorThread);
+        return aircraftRepository.getAircraftList();
     }
 }
