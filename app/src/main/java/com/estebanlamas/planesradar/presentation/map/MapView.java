@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface MapView {
     void updateAircrafts(List<Aircraft> aircraftList);
+    void showError(String message);
 }

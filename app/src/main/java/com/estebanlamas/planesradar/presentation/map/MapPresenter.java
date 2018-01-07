@@ -51,7 +51,7 @@ public class MapPresenter extends Presenter<MapView> {
     }
 
     public void showErrorView(Throwable error) {
-
+        view.showError(error.getMessage());
     }
 
     public void onPause() {

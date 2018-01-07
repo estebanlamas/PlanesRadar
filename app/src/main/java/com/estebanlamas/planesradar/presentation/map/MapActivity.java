@@ -1,6 +1,7 @@
 package com.estebanlamas.planesradar.presentation.map;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.estebanlamas.planesradar.R;
 import com.estebanlamas.planesradar.domain.model.Aircraft;
@@ -70,5 +71,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Map
                 googleMap.addMarker(aircraftMarker.create(aircraft));
             }
         }
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 }
