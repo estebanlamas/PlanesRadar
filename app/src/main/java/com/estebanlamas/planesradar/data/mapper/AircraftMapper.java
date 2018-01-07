@@ -14,39 +14,38 @@ import java.util.List;
 public class AircraftMapper {
 
     public static Aircraft mapResponse(AircraftResponse aircraftResponse){
-        Aircraft aircraft = new Aircraft();
-        aircraft.setAge(aircraftResponse.getAge());
-        aircraft.setAircraftCountry(aircraftResponse.getAircraftCountry());
-        aircraft.setAltitudeSeaLevel(aircraftResponse.getAltitudeSeaLevel());
-        aircraft.setAircraftType(aircraftResponse.getAircraftType());
-        aircraft.setAltitudGround(aircraftResponse.getAltitudGround());
-        aircraft.setCallsign(aircraftResponse.getCallsign());
-        aircraft.setEngineMount(aircraftResponse.getEngineMount());
-        aircraft.setEnginesNum(aircraftResponse.getEnginesNum());
-        aircraft.setEngineType(aircraftResponse.getEngineType());
-        aircraft.setFrom(aircraftResponse.getFrom());
-        aircraft.setTo(aircraftResponse.getTo());
-        aircraft.setHeading(aircraftResponse.getHeading());
-        aircraft.setHelp(aircraftResponse.isHelp());
-        aircraft.setIdBroadcastIcao(aircraftResponse.getIdBroadcastIcao());
-        aircraft.setInteresting(aircraftResponse.isInteresting());
-        aircraft.setLatitude(aircraftResponse.getLatitude());
-        aircraft.setLongitude(aircraftResponse.getLongitude());
-        aircraft.setManufacturer(aircraftResponse.getManufacturer());
-        aircraft.setMilitary(aircraftResponse.isMilitary());
-        aircraft.setModelDescription(aircraftResponse.getModelDescription());
-        aircraft.setModelIcao(aircraftResponse.getModelIcao());
-        aircraft.setOnGround(aircraftResponse.isOnGround());
-        aircraft.setOperator(aircraftResponse.getOperator());
-        aircraft.setOperatorIcao(aircraftResponse.getOperatorIcao());
-        aircraft.setPositionTime(aircraftResponse.getPositionTime());
-        aircraft.setRegistration(aircraftResponse.getRegistration());
-        aircraft.setSerial(aircraftResponse.getSerial());
-        aircraft.setSpeed(aircraftResponse.getSpeed());
-        aircraft.setSqwak(aircraftResponse.getSqwak());
-        aircraft.setTurbulenceCategory(aircraftResponse.getTurbulenceCategory());
-        aircraft.setVerticalSpeed(aircraftResponse.getVerticalSpeed());
-        return aircraft;
+        return new Aircraft(
+                aircraftResponse.getAltitudGround(),
+                aircraftResponse.getSerial(),
+                aircraftResponse.getCallsign(),
+                aircraftResponse.getAircraftCountry(),
+                aircraftResponse.getEngineMount(),
+                aircraftResponse.getEngineType(),
+                aircraftResponse.getEnginesNum(),
+                aircraftResponse.getFrom(),
+                aircraftResponse.getAltitudeSeaLevel(),
+                aircraftResponse.isOnGround(),
+                aircraftResponse.isHelp(),
+                aircraftResponse.getIdBroadcastIcao(),
+                aircraftResponse.isInteresting(),
+                aircraftResponse.getLatitude(),
+                aircraftResponse.getLongitude(),
+                aircraftResponse.getManufacturer(),
+                aircraftResponse.getModelDescription(),
+                aircraftResponse.isMilitary(),
+                aircraftResponse.getOperator(),
+                aircraftResponse.getOperatorIcao(),
+                aircraftResponse.getPositionTime(),
+                aircraftResponse.getRegistration(),
+                aircraftResponse.getSpeed(),
+                aircraftResponse.getAircraftType(),
+                aircraftResponse.getSqwak(),
+                aircraftResponse.getTo(),
+                aircraftResponse.getHeading(),
+                aircraftResponse.getModelIcao(),
+                aircraftResponse.getVerticalSpeed(),
+                aircraftResponse.getTurbulenceCategory(),
+                aircraftResponse.getAge());
     }
 
     public static List<Aircraft> mapResponse(AircraftListResponse aircraftListResponse) {

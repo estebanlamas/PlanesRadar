@@ -10,6 +10,7 @@ import java.util.TimerTask;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscription;
 
 /**
@@ -41,7 +42,7 @@ public class MapPresenter extends Presenter<MapView> {
     }
 
     private void requestAircrafts() {
-        getAircraftsSubscription = getAircraftsUseCase.execute()
+        getAircraftsSubscription = getAircraftsUseCase.buildObservable()
                 .subscribe(this::onAircraftReceived, this::showErrorView);
     }
 
