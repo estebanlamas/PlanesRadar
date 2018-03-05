@@ -110,7 +110,7 @@ public class AircraftResponse {
     }
 
     public String getCallsign() {
-        return callsign;
+        return callsign==null?"":callsign;
     }
 
     public String getAircraftCountry() {
@@ -130,7 +130,7 @@ public class AircraftResponse {
     }
 
     public String getFrom() {
-        return from;
+        return from!=null?from:"";
     }
 
     public int getAltitudeSeaLevel() {
@@ -202,7 +202,7 @@ public class AircraftResponse {
     }
 
     public String getTo() {
-        return to;
+        return to!=null?to:"";
     }
 
     public float getHeading() {
