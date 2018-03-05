@@ -17,7 +17,5 @@ class GetAircraftsUseCase
             private val aircraftRepository: AircraftRepository) : UseCase<AircraftsDetected>(threadExecutor,
                                                                                           postExecutionThread) {
 
-    override fun buildObservable(): Observable<AircraftsDetected> {
-        return aircraftRepository.aircraftList
-    }
+    override fun buildObservable(): Observable<AircraftsDetected> = aircraftRepository.aircraftList
 }
