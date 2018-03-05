@@ -1,7 +1,6 @@
 package com.estebanlamas.planesradar.domain.repository
 
-import com.estebanlamas.planesradar.domain.model.Aircraft
-
+import com.estebanlamas.planesradar.domain.model.AircraftsDetected
 import rx.Observable
 
 /**
@@ -9,5 +8,5 @@ import rx.Observable
  */
 
 interface AircraftRepository {
-    val aircraftList: Observable<List<Aircraft>>
+    val aircraftList: Observable<AircraftsDetected>
 }
