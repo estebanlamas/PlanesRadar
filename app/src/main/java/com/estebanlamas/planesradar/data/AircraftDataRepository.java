@@ -3,10 +3,8 @@ package com.estebanlamas.planesradar.data;
 import com.estebanlamas.planesradar.data.mapper.AircraftMapper;
 import com.estebanlamas.planesradar.data.remote.AdsbExchangeApi;
 import com.estebanlamas.planesradar.data.remote.response.AircraftListResponse;
+import com.estebanlamas.planesradar.domain.model.AircraftsDetected;
 import com.estebanlamas.planesradar.domain.repository.AircraftRepository;
-import com.estebanlamas.planesradar.domain.model.Aircraft;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,10 +22,10 @@ public class AircraftDataRepository extends BaseRepository implements AircraftRe
         super(adsbExchangeApi);
     }
 
-    public Observable<List<Aircraft>> getAircraftList() {
-        return adsbExchangeApi.getAircraftList().flatMap(new Func1<AircraftListResponse, Observable<List<Aircraft>>>() {
+    public Observable<AircraftsDetected> getAircraftList() {
+        return adsbExchangeApi.getAircraftList().flatMap(new Func1<AircraftListResponse, Observable<AircraftsDetected>>() {
             @Override
-            public Observable<List<Aircraft>> call(AircraftListResponse aircraftListResponse) {
+            public Observable<AircraftsDetected> call(AircraftListResponse aircraftListResponse) {
                 return Observable.just(AircraftMapper.mapResponse(aircraftListResponse));
             }
         });

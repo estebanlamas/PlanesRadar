@@ -2,6 +2,7 @@ package com.estebanlamas.planesradar.presentation.map;
 
 import com.estebanlamas.planesradar.domain.GetAircraftsUseCase;
 import com.estebanlamas.planesradar.domain.model.Aircraft;
+import com.estebanlamas.planesradar.domain.model.AircraftsDetected;
 import com.estebanlamas.planesradar.presentation.Presenter;
 
 import java.util.List;
@@ -10,7 +11,6 @@ import java.util.TimerTask;
 
 import javax.inject.Inject;
 
-import rx.Observable;
 import rx.Subscription;
 
 /**
@@ -42,12 +42,12 @@ public class MapPresenter extends Presenter<MapView> {
     }
 
     private void requestAircrafts() {
-        getAircraftsSubscription = getAircraftsUseCase.buildObservable()
+        getAircraftsSubscription = getAircraftsUseCase.execute()
                 .subscribe(this::onAircraftReceived, this::showErrorView);
     }
 
-    private void onAircraftReceived(List<Aircraft> aircraftList){
-        view.updateAircrafts(aircraftList);
+    private void onAircraftReceived(AircraftsDetected aircraftsDetected){
+        view.updateAircrafts(aircraftsDetected.getAircrafts());
     }
 
     public void showErrorView(Throwable error) {

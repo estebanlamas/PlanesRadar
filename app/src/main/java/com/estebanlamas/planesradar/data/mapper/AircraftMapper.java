@@ -3,6 +3,7 @@ package com.estebanlamas.planesradar.data.mapper;
 import com.estebanlamas.planesradar.data.remote.response.AircraftListResponse;
 import com.estebanlamas.planesradar.data.remote.response.AircraftResponse;
 import com.estebanlamas.planesradar.domain.model.Aircraft;
+import com.estebanlamas.planesradar.domain.model.AircraftsDetected;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class AircraftMapper {
                 aircraftResponse.getAge());
     }
 
-    public static List<Aircraft> mapResponse(AircraftListResponse aircraftListResponse) {
+    public static AircraftsDetected mapResponse(AircraftListResponse aircraftListResponse) {
         List<AircraftResponse> aircraftResponseList = aircraftListResponse.getAcList();
         List<Aircraft> aircraftList = new ArrayList<>();
         if(!aircraftResponseList.isEmpty()){
@@ -56,6 +57,6 @@ public class AircraftMapper {
                 aircraftList.add(mapResponse(aircraftResponse));
             }
         }
-        return aircraftList;
+        return new AircraftsDetected(aircraftList);
     }
 }
