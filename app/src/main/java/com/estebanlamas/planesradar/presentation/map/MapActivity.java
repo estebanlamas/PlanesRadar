@@ -7,15 +7,22 @@ import com.estebanlamas.planesradar.R;
 import com.estebanlamas.planesradar.domain.model.Aircraft;
 import com.estebanlamas.planesradar.presentation.BaseActivity;
 import com.estebanlamas.planesradar.presentation.map.di.MapModule;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class MapActivity extends BaseActivity implements OnMapReadyCallback, MapView{
+public class MapActivity extends BaseActivity implements OnMapReadyCallback, MapView {
+    private final static double CENTER_LAT = 40.4322308;
+    private final static double CENTER_LON = -3.674026;
+    private final static float DEFAULT_ZOOM = 9.0f;
+
     @Inject MapPresenter mapPresenter;
     @Inject AircraftMarker aircraftMarker;
 
@@ -57,6 +64,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Map
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         this.mapPresenter.onResume();
+        this.googleMap.animateCamera(getCameraUpdate());
+    }
+
+    private CameraUpdate getCameraUpdate() {
+        return CameraUpdateFactory.newLatLngZoom(new LatLng(CENTER_LAT, CENTER_LON), DEFAULT_ZOOM);
     }
 
     /************
