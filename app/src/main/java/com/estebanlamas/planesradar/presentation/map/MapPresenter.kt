@@ -25,7 +25,7 @@ class MapPresenter
             override fun run() {
                 requestAircrafts()
             }
-        }, 0, REFRESH_MILLISECONDS.toLong())
+        }, 0, REFRESH_MILLISECONDS)
     }
 
     private fun requestAircrafts() {
@@ -34,11 +34,11 @@ class MapPresenter
     }
 
     private fun onAircraftReceived(aircraftsDetected: AircraftsDetected) {
-        view.updateAircrafts(aircraftsDetected.aircrafts)
+        view?.updateAircrafts(aircraftsDetected.aircrafts)
     }
 
     fun showErrorView(error: Throwable) {
-        view.showError(error.message)
+        view?.showError(error.message)
     }
 
     fun onPause() {
@@ -47,6 +47,6 @@ class MapPresenter
     }
 
     companion object {
-        const val REFRESH_MILLISECONDS = 3000
+        const val REFRESH_MILLISECONDS = 3000L
     }
 }
