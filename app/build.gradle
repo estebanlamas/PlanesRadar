@@ -8,7 +8,6 @@ ext {
     okHttpVersion = '3.9.0'
     gsonVersion = '2.8.0'
     supportVersion = '26.1.0'
-    playServicesVersion = '11.8.0'
     daggerVersion = '2.9'
     rxAndroid = '0.24.0'
     rxJava = '1.0.0'
@@ -16,15 +15,15 @@ ext {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.estebanlamas.planesradar"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -48,9 +47,9 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     // Support
-    implementation "com.android.support:appcompat-v7:${supportVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     // Play services
-    implementation "com.google.android.gms:play-services-maps:${playServicesVersion}"
+    implementation "com.google.android.gms:play-services-maps:17.0.0"
     // Network Connections
     implementation "com.squareup.retrofit2:retrofit:${retrofit2Version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit2Version}"

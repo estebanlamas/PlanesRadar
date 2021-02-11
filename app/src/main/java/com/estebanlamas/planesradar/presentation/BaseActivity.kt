@@ -1,7 +1,7 @@
 package com.estebanlamas.planesradar.presentation
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 import com.estebanlamas.planesradar.PlaneRadarApplication
 import com.estebanlamas.planesradar.di.component.AppComponent
