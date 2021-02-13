@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 
 import com.estebanlamas.planesradar.R
-import com.estebanlamas.planesradar.domain.model.Aircraft
 import com.estebanlamas.planesradar.presentation.BaseActivity
 import com.estebanlamas.planesradar.presentation.map.di.MapModule
 import com.google.android.gms.maps.CameraUpdate
@@ -13,13 +12,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-
 import javax.inject.Inject
 
-class MapActivity : BaseActivity(), OnMapReadyCallback, MapView {
+class MapActivity : BaseActivity(), OnMapReadyCallback {
 
     @Inject
-    lateinit var mapPresenter: MapPresenter
+    lateinit var mapViewModel: MapViewModel
 
     @Inject
     lateinit var aircraftMarker: AircraftMarker
@@ -28,7 +26,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapView {
 
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
-        mapPresenter.attachView(this)
         setupMapFragment()
     }
 
@@ -45,37 +42,39 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapView {
         return R.layout.activity_maps
     }
 
-    public override fun onPause() {
-        mapPresenter.onPause()
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
+        mapViewModel.stopRadar()
     }
 
-    /*********************
-     * OnMapReadyCallback
-     ********************/
+    // region Google Map
 
     override fun onMapReady(googleMap: GoogleMap) {
         this.googleMap = googleMap
-        this.mapPresenter.onResume()
-        googleMap.animateCamera(zoomCammera())
+        googleMap.animateCamera(zoomCamera())
+        observeAircrafts()
+        observeError()
+        mapViewModel.initRadar()
     }
 
-    private fun zoomCammera(): CameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(CENTER_LAT, CENTER_LON), DEFAULT_ZOOM)
+    private fun zoomCamera(): CameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(CENTER_LAT, CENTER_LON), DEFAULT_ZOOM)
 
-    /************
-     * MapView
-     ***********/
-
-    override fun updateAircrafts(aircraftList: List<Aircraft>) {
-        googleMap?.clear()
-        for (aircraft in aircraftList) {
-            googleMap?.addMarker(aircraftMarker.create(aircraft))
+    private fun observeAircrafts() {
+        mapViewModel.aircraftList.observe(this) {
+            googleMap?.clear()
+            for (aircraft in it) {
+                googleMap?.addMarker(aircraftMarker.create(aircraft))
+            }
         }
     }
 
-    override fun showError(message: String?) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    private fun observeError() {
+        mapViewModel.error.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        }
     }
+
+    // endregion
 
     companion object {
         private const val CENTER_LAT = 40.4322308

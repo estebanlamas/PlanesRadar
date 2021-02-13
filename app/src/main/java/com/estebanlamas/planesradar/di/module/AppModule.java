@@ -2,8 +2,6 @@ package com.estebanlamas.planesradar.di.module;
 
 import android.app.Application;
 
-import com.estebanlamas.planesradar.domain.executor.PostExecutionThread;
-import com.estebanlamas.planesradar.presentation.executor.UIThread;
 import com.estebanlamas.planesradar.presentation.utils.BitmapUtils;
 import com.estebanlamas.planesradar.presentation.map.AircraftMarker;
 
@@ -11,9 +9,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @Module
 public class AppModule {
@@ -41,13 +36,4 @@ public class AppModule {
         return new AircraftMarker(bitmapUtils);
     }
 
-    @Provides
-    Scheduler provideExecutorThread() {
-        return Schedulers.newThread();
-    }
-
-    @Provides
-    PostExecutionThread provideUiThread(UIThread uiThread) {
-        return uiThread;
-    }
 }

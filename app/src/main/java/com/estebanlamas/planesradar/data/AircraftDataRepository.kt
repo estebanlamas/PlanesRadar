@@ -4,7 +4,8 @@ import com.estebanlamas.planesradar.data.mapper.AircraftMapper
 import com.estebanlamas.planesradar.data.remote.AdsbExchangeApi
 import com.estebanlamas.planesradar.domain.model.AircraftsDetected
 import com.estebanlamas.planesradar.domain.repository.AircraftRepository
-import rx.Observable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
@@ -12,9 +13,11 @@ import javax.inject.Inject
  */
 
 class AircraftDataRepository
-@Inject constructor(adsbExchangeApi: AdsbExchangeApi) : BaseRepository(adsbExchangeApi), AircraftRepository {
+@Inject constructor(
+    adsbExchangeApi: AdsbExchangeApi
+) : BaseRepository(adsbExchangeApi), AircraftRepository {
 
-    override val aircraftList: Observable<AircraftsDetected> = adsbExchangeApi.aircraftList.flatMap {
-        aircraftListResponse -> Observable.just(AircraftMapper.mapResponse(aircraftListResponse))
+    override fun aircraftList(): Flow<AircraftsDetected> = flow {
+        emit(AircraftMapper.mapResponse(adsbExchangeApi.aircraftList()))
     }
 }

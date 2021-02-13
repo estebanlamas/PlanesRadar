@@ -3,7 +3,6 @@ package com.estebanlamas.planesradar.presentation.map;
 import com.estebanlamas.planesradar.domain.GetAircraftsUseCase;
 import com.estebanlamas.planesradar.domain.model.Aircraft;
 
-import org.apache.tools.ant.taskdefs.Sleep;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ import java.util.List;
 
 import rx.Observable;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,8 +21,8 @@ import static org.mockito.Mockito.when;
  * Created by esteban on 27/12/17
  */
 @RunWith(MockitoJUnitRunner.class)
-public class MapPresenterTest {
-    private MapPresenter presenter;
+public class MapViewModelTest {
+    private MapViewModel presenter;
 
     @Mock
     MapView mapView;
@@ -34,7 +32,7 @@ public class MapPresenterTest {
 
     @Before
     public void setUp() throws Exception {
-        presenter = new MapPresenter(getAircraftsUseCase);
+        presenter = new MapViewModel(getAircraftsUseCase);
         presenter.attachView(mapView);
     }
 
