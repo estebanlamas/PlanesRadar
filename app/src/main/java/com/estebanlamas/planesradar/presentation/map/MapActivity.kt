@@ -42,11 +42,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback {
         return R.layout.activity_maps
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mapViewModel.stopRadar()
-    }
-
     // region Google Map
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -54,7 +49,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback {
         googleMap.animateCamera(zoomCamera())
         observeAircrafts()
         observeError()
-        mapViewModel.initRadar()
     }
 
     private fun zoomCamera(): CameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(CENTER_LAT, CENTER_LON), DEFAULT_ZOOM)

@@ -4,6 +4,7 @@ import com.estebanlamas.planesradar.data.mapper.AircraftMapper
 import com.estebanlamas.planesradar.data.remote.AdsbExchangeApi
 import com.estebanlamas.planesradar.domain.model.AircraftsDetected
 import com.estebanlamas.planesradar.domain.repository.AircraftRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -17,7 +18,14 @@ class AircraftDataRepository
     adsbExchangeApi: AdsbExchangeApi
 ) : BaseRepository(adsbExchangeApi), AircraftRepository {
 
+    companion object {
+        const val REFRESH_MILLISECONDS = 3000L
+    }
+
     override fun aircraftList(): Flow<AircraftsDetected> = flow {
-        emit(AircraftMapper.mapResponse(adsbExchangeApi.aircraftList()))
+        while(true) {
+            emit(AircraftMapper.mapResponse(adsbExchangeApi.aircraftList()))
+            delay(REFRESH_MILLISECONDS)
+        }
     }
 }

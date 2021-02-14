@@ -16,7 +16,7 @@ class AircraftMarker(private val bitmapUtils: BitmapUtils) {
         val latLon = LatLng(aircraft.latitude, aircraft.longitude)
         return MarkerOptions()
                 .position(latLon)
-                .title(aircraft.callsign + " " + aircraft.aircraftType)
+                .title(aircraft.callsign + " " + aircraft.modelDescription)
                 .rotation(aircraft.heading)
                 .icon(bitmapUtils.getBitmapDescriptorFromVector(R.drawable.ic_a320))
                 .anchor(0.5f, 0.5f)
